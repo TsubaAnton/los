@@ -1,0 +1,24 @@
+{% extends 'quizz/base.html' %}
+{% load mediapath %}
+{% block content %}
+
+<div class="col-lg-12">
+    <h2>Доступные тесты</h2>
+    <div class="row">
+        {% for object in object_list %}
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img src="{{object.img|mediapath}}" class="card-img-top" alt="{{ test.title }}" width="200" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">{{ object.name }}</h5>
+                    <p class="card-text">{{ object.description }}</p>
+                    <a href="{%url 'quizz:start_test' object.pk %}" class="btn btn-primary">Начать тест</a>
+                    <a href="{%url 'quizz:statistic' object.pk %}" class="btn btn-primary">Посмотреть статистику по тесту</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{%extends 'quizz/base.html'%}
+{%block content%}
+
+<head>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #666;
+        }
+        p {
+            color: #777;
+            font-size: 18px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+        <h2>Успешность прохождения:</h2>
+        <p>Процент успешных прохождений: {{ pass_rate }}%</p>
+
+        <h2>Количество прохождений:</h2>
+        <p>Общее количество прохождений: {{ number_of_passing }}</p>
+
+        <h2>Самый сложный вопрос:</h2>
+        <p>{{ difficult_question }}</p>
+    </div>
+</body>
+
+
+{%endblock%}

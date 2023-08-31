@@ -1,0 +1,21 @@
+{% extends 'quizz/base.html'%}
+{%block content%}
+<body>
+<h1>Вопрос:</h1>
+{%for object in object_list%}
+<p>{{ object.text }}</p>
+
+<form method="post" >
+
+    {% csrf_token %}
+    <label for="answer_yes">Да</label>
+    <input type="radio" id="answer_yes" name="answer" value="yes">
+    <label for="answer_no">Нет</label>
+    <input type="radio" id="answer_no" name="answer" value="no">
+
+
+    <button type="submit">Ответить</button>
+</form>
+{% endfor %}
+</body>
+{%endblock%}

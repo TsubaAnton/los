@@ -1,0 +1,31 @@
+{% extends 'quizz/base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Создать тест</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ question_form.as_p }}
+
+                        <!-- Кнопка "Добавить вопрос" под формой -->
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary" name="new">Добавить вопрос</button>
+                        </div>
+                    </form>
+
+                    <!-- Кнопка "Выйти на главный экран" справа -->
+                    <div class="text-right mt-3">
+                        <a href="{% url 'quizz:main_page' %}" class="btn btn-secondary">Выйти на главный экран</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

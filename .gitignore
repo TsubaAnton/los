@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches
+*.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.sublime-*
+
+# Compiled Python files
+*.pyc
+
+# Logs and databases
+*.log
+*.db
+
+# Secret keys
+*.secret
+
+
+
+# Ignore migration files, as they can contain sensitive data
+**/migrations/*.py
+**/migrations/*.pyc
+
+# Ignore local settings
+local_settings.py
+
+# Ignore coverage report directory
+htmlcov/
+
+# Ignore pytest cache
+__pycache__/
+
+# Ignore .DS_Store (macOS file)
+.DS_Store
