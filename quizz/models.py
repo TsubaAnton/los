@@ -22,7 +22,7 @@ class Question(models.Model):
                              related_name='questions',
                              **NULLABLE)
 
-    answer = models.CharField(verbose_name='ответ', choices=answer_choices, default='no')
+    answer = models.CharField(max_length=3, verbose_name='ответ', choices=answer_choices, default='no')
     number_incorrect_answers = models.PositiveIntegerField(default=0, verbose_name='количество неправильных ответов')
 
     def __str__(self):
@@ -41,7 +41,7 @@ class Question(models.Model):
 class TestResults(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE, verbose_name='Тест', **NULLABLE)
     is_passed = models.BooleanField(default=False, verbose_name='Пройден')
-    session = models.CharField(verbose_name='ключ сессии', unique=True)
+    session = models.CharField(max_length=7, verbose_name='ключ сессии', unique=True)
     score = models.PositiveIntegerField(verbose_name='результат пользователя', default=0)
 
     def __str__(self):
