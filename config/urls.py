@@ -14,20 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.auth.views import LoginView
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from config import settings
 from django.conf.urls.static import static
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('quizz.urls', namespace='quizz')),
-    path('register/', include('users.urls')),
+                  path('admin/', admin.site.urls),
+                  path('', include('project.urls', namespace='project')),
+                  path('accounts/login/', LoginView.as_view(), name='login'),
 
+                  #
+                  # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+                  # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
-    path('api/', include('quizz_api.urls', namespace='quizz_api'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('api/', include('quizz_api.urls', namespace='quizz_api'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

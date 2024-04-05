@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'quizz_api',
     'rest_framework',
-    'users'
+    'project'
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -130,13 +130,13 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'user.User'
 
-REST_FRAMEWORK = {
-
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-
-}
+# REST_FRAMEWORK = {
+#
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     )
+#
+# }

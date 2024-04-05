@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }}</title>
+</head>
+<body>
+    <h1>{{ event.title }}</h1>
+    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+    <p>{{ event.description }}</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if request.user in attendees %}
+            <input type="submit" value="Не пойду">
+        {% else %}
+            <input type="submit" value="Пойду">
+        {% endif %}
+    </form>
+    <h2>Идут на мероприятие:</h2>
+    <ul>
+        {% for attendee in attendees %}
+            <li>{{ attendee.username }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
