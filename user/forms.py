@@ -24,7 +24,7 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'tg_link', 'course', 'direction']
+        fields = ['email', 'first_name', 'last_name', 'tg_link', 'course', 'direction', 'age']
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
@@ -33,6 +33,7 @@ class ProfileForm(forms.ModelForm):
         self.fields['tg_link'].required = False
         self.fields['course'].required = False
         self.fields['direction'].required = False
+        self.fields['age'].required = False
 
 
 class ImageUploadForm(forms.ModelForm):
