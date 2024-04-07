@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'quizz_api',
     'rest_framework',
-    'project'
+    'project',
+    'los',
+    'user'
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -130,8 +132,9 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# AUTH_USER_MODEL = 'user.User'
-
+AUTH_USER_MODEL = 'user.User'
+LOGIN_REDIRECT_URL = '/user/profile'
+LOGOUT_REDIRECT_URL = '/'
 # REST_FRAMEWORK = {
 #
 #     'DEFAULT_AUTHENTICATION_CLASSES': (

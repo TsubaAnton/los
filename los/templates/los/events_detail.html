@@ -1,0 +1,84 @@
+{% extends 'los/base.html' %}
+{% load static %}
+{% load mediapath %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Добавляем ссылку на файл со стилями -->
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="background-color: #343a40;">
+                        <!-- Используем классы navbar-dark и bg-primary -->
+                        <h2 style="color: white;">{{ event.title }}</h2> <!-- Изменяем цвет текста на белый -->
+                    </div>
+                    <div class="card-body">
+                        <img src="{{ event.img|mediapath }}" class="card-img-top" alt="{{ event.title }}"
+                             style="width:100%; height:auto; aspect-ratio:16/9;">
+                        {#                        <img src="{{ event.img.url }}" alt="{{ event.title }}" class="img-fluid mb-3">#}
+                        <p>{{ event.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="background-color: #343a40;">
+                        <h2 style="color: white;">Участники</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Фото</th>
+                                <th>Имя участника</th>
+                                <th>Профиль</th> <!-- Добавляем новый заголовок для ссылки на профиль -->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for attendee in attendees %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                        {% if attendee.avatar %}
+                                            <div class="avatar"
+                                                 style="background-image: url('{{ attendee.avatar|mediapath }}')"></div>
+                                        {% else %}
+                                            <div class="avatar empty"></div>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ attendee.email }}</td>
+                                    <td> <!-- Добавляем новую ячейку для ссылки на профиль -->
+                                        <a href="{% url 'los:profile_attend' attendee.id %}" class="btn btn-primary">Профиль</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                {% if user.is_authenticated %}
+                    {% if user in event.attendees.all %}
+                        <div class="alert alert-success" role="alert">
+                            Вы успешно отметились, что идете на это мероприятие!
+                        </div>
+                    {% else %}
+                        <form action="{% url 'los:event_attend' event.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Я иду!</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+

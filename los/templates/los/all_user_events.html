@@ -1,0 +1,48 @@
+{% extends 'los/base.html' %}
+{% load mediapath %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for user in all_users %}
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="user-avatar">
+                <img src="{{ user.avatar|mediapath }}" class="rounded-circle img-thumbnail" alt="{{ user.email }}" style="width: 80px; height: 80px;">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <h5 class="card-title">{{ user.first_name }}</h5>
+              <p class="card-text">{{ user.email }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="events-list">
+            {% for event in user.events.all %}
+            <div class="event">
+              <div class="row">
+                <div class="col-md-12">
+                  <h6>{{ event.title }}</h6>
+                  <p>{{ event.description }}</p>
+                  <a href="{% url 'los:event_detail' event.id %}" class="btn btn-primary btn-sm" style="background-color: #343a40;">Подробнее</a>
+                </div>
+              </div>
+              {% if not forloop.last %}
+              <hr> <!-- Добавляем линию разделения между мероприятиями -->
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+

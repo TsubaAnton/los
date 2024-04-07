@@ -1,0 +1,50 @@
+{% extends 'los/base.html' %}
+{% load static %}
+{% load mediapath %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Добавляем ссылку на файл со стилями -->
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        {% if current_user.avatar %}
+                            <div class="square">
+                                <img src="{{ current_user.avatar|mediapath }}" class="img-fluid mb-3" alt="{{ user.username }}">
+                            </div>
+                        {% else %}
+                            <div class="avatar empty"></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" style="background-color: #343a40;">
+                        <h2 style="color: white;">Профиль пользователя</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Email:</th>
+                                <td>{{ current_user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Имя:</th>
+                                <td>{{ current_user.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Фамилия:</th>
+                                <td>{{ current_user.last_name }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

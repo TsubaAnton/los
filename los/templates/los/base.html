@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Моя Страница{% endblock %}</title>
+    <!-- Подключаем Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #343a40 !important; /* Цвет фона навигационной панели */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">На главную</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Добавляем кнопку Регистрации -->
+                    <li class="nav-item">
+                        <a class="nav-link btn text-white font-weight-bold" href="{% url 'los:all_user_events' %}">Куда
+                            хотят сходить пользователи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn text-white font-weight-bold" href="{% url 'los:articles_list' %}">Полезные
+                            статьи</a>
+                    </li>
+                    {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link btn text-white font-weight-bold"
+                               href="{% url 'user:register' %}">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn text-white font-weight-bold" href="{% url 'user:login' %}">Войти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link btn text-white font-weight-bold"
+                               href="{% url 'user:profile' %}">Профиль</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn text-white font-weight-bold" href="{% url 'user:logout' %}">Выйти</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Основное содержимое -->
+<div class="container mt-5">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Подключаем Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+

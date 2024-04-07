@@ -1,0 +1,38 @@
+{% extends 'los/base.html' %}
+{% load mediapath %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- Изображение пользователя (аватар) -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <div class="square">
+                            <img src="{{ user.avatar|mediapath }}" class="img-fluid mb-3"
+                                 alt="Аватар пользователя">
+                        </div>
+                        <h5 class="card-title mt-3">{{ user.username }}</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- Данные пользователя и форма для изменения изображения -->
+            <div class="col-md-8">
+                    <div class="card-header" style="background-color: #343a40;" >
+                        <h2 style="color: white;">Профиль пользователя</h2>
+                    </div>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Данные пользователя -->
+                            {{ profile_form|crispy }}
+                            <!-- Форма для изменения изображения -->
+                            {{ image_form|crispy }}
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
