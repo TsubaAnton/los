@@ -8,7 +8,8 @@ from .models import Event, Article
 
 
 def all_user_events(request):
-    users = User.objects.filter(events__isnull=False)
+    users = User.objects.filter(events__isnull=False).distinct()
+    print(users)
     return render(request, 'los/all_user_events.html', {'all_users': users})
 
 

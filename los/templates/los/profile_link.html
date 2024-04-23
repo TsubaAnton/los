@@ -2,7 +2,7 @@
 {% load static %}
 {% load mediapath %}
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Добавляем ссылку на файл со стилями -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <div class="container mt-5">
         <div class="row">
@@ -38,6 +38,10 @@
                             <tr>
                                 <th>Фамилия:</th>
                                 <td>{{ current_user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ник в телеграм:</th>
+                                <td>{{ current_user.tg_link }}</td>
                             </tr>
                             </tbody>
                         </table>
